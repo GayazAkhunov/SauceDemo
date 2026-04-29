@@ -37,9 +37,7 @@ public class BaseTest {
         checkoutStepOnePage = new CheckoutStepOnePage(driver);
         checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
-
     }
-
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.quit();

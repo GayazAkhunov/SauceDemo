@@ -43,5 +43,4 @@ public class CartPage extends BasePage {
     public String cartItemPrice() {
         return driver.findElement(CART_PRICE).getText();
     }
-
 }

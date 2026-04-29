@@ -10,7 +10,6 @@ public class CheckoutCompletePage extends BasePage {
     private final By PONY_EXPRESS = By.xpath("//img[@alt='Pony Express']");
     private final By BACK_HOME_BUTTON = By.xpath("//a[@class='btn_secondary' and contains(text(), 'BACK HOME')]");
 
-
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
     }
