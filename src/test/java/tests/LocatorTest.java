@@ -1,46 +1,17 @@
+package tests;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 
-public class LocatorTest {
+public class LocatorTest extends BaseTest{
 
-    private WebDriver driver;
-
-    @BeforeTest
-    public void setUp() {
-        ChromeOptions options = new ChromeOptions();
-
-        HashMap<String, Object> chromePrefs = new HashMap<>();
-        chromePrefs.put("credentials_enable_service", false);
-        chromePrefs.put("profile.password_manager_enabled", false);
-        options.setExperimentalOption("prefs", chromePrefs);
-
-        options.addArguments("--incognito");
-        options.addArguments("--disable-notifications");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--disable-infobars");
-
-        driver = new ChromeDriver(options);
-
-        driver.manage().window().maximize();
-        driver.get("https://www.saucedemo.com");
-    }
-
-    @AfterTest
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
-    @Test
+    @Test(
+            testName = "Проверка локаторов",
+            description = "Приведен список локаторов"
+    )
     public void testLocators() {
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement usernameInputCss = driver.findElement(By.cssSelector("#user-name"));
@@ -49,7 +20,6 @@ public class LocatorTest {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.className("btn_action")).click();
-
 
         // --- Локаторы ---
 
@@ -93,7 +63,6 @@ public class LocatorTest {
 
         // AND в XPath
         WebElement usernameInputAndType = driver.findElement(By.xpath("//button[@class='btn btn_primary btn_small btn_inventory ' and@data-test = 'add-to-cart-sauce-labs-backpack']"));
-
 
         // --- CSS Selectors ---
 

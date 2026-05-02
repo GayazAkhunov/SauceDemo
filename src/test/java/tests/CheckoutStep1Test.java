@@ -1,13 +1,14 @@
 package tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static org.testng.Assert.assertEquals;
-
 public class CheckoutStep1Test extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка входа с позитивными кредами",
+            description = "Проверка входа с позитивными кредами")
     public void checkoutWithPositive() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
@@ -20,55 +21,26 @@ public class CheckoutStep1Test extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
-    public void checkoutWithEmptyFirstName() {
-        SoftAssert softAssert = new SoftAssert();
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        softAssert.assertEquals(productsPage.getTitle(), "Products");
-        productsPage.clickToCart();
-        cartPage.clickCheckout();
-        checkoutStepOnePage.fillForm("", "Akhunov", "412304");
-        softAssert.assertEquals(checkoutStepTwoPage.getErrorMessage(), "Error: First Name is required");
-        softAssert.assertAll();
+    @DataProvider(name = "Тестовые данные для негативного чекаута")
+    public Object[][] checkoutData(){
+        return new Object[][]{
+                {"","Akhunov","412304","Error: First Name is required"},
+                {"Gayaz","","412304","Error: Last Name is required"},
+                {"Gayaz","Akhunov","","Error: Postal Code is required"},
+                {"","","","Error: First Name is required"}
+        };
     }
 
-    @Test
-    public void checkoutWithEmptyLastName() {
+    @Test(dataProvider = "Тестовые данные для негативного чекаута")
+    public void negativeCheckout(String firstName, String lastName, String zip, String errorMessage) {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         softAssert.assertEquals(productsPage.getTitle(), "Products");
         productsPage.clickToCart();
         cartPage.clickCheckout();
-        checkoutStepOnePage.fillForm("Gayaz", "", "412304");
-        softAssert. assertEquals(checkoutStepTwoPage.getErrorMessage(), "Error: Last Name is required");
-        softAssert.assertAll();
-    }
-
-    @Test
-    public void checkoutWithEmptyZip() {
-        SoftAssert softAssert = new SoftAssert();
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        softAssert.assertEquals(productsPage.getTitle(), "Products");
-        productsPage.clickToCart();
-        cartPage.clickCheckout();
-        checkoutStepOnePage.fillForm("Gayaz", "Akhunov", "");
-        softAssert.assertEquals(checkoutStepTwoPage.getErrorMessage(), "Error: Postal Code is required");
-        softAssert.assertAll();
-    }
-
-    @Test
-    public void checkoutWithEmptyFields() {
-        SoftAssert softAssert = new SoftAssert();
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        softAssert.assertEquals(productsPage.getTitle(), "Products");
-        productsPage.clickToCart();
-        cartPage.clickCheckout();
-        checkoutStepOnePage.fillForm("", "", "");
-        softAssert.assertEquals(checkoutStepTwoPage.getErrorMessage(), "Error: First Name is required");
+        checkoutStepOnePage.fillForm(firstName,lastName, zip);
+        softAssert.assertEquals(checkoutStepTwoPage.getErrorMessage(), errorMessage);
         softAssert.assertAll();
     }
 }

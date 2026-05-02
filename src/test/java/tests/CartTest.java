@@ -8,8 +8,14 @@ import static org.testng.Assert.assertEquals;
 
 public class CartTest extends BaseTest {
 
-    @Test
-    public void addToCart() throws InterruptedException {
+    @Test(
+            testName = "Проверка добавления товара в корзину",
+            description =
+                    "a. Залогиниться" +
+                    "b. Добавить товар в корзину" +
+                    "c. Перейти в корзину" +
+                    "d. Проверить (assertEquals) стоимость товара и его имя в корзине")
+    public void addToCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
