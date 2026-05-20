@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class CheckoutCompletePage extends BasePage {
 
@@ -10,8 +13,16 @@ public class CheckoutCompletePage extends BasePage {
     private final By PONY_EXPRESS = By.xpath("//img[@alt='Pony Express']");
     private final By BACK_HOME_BUTTON = By.xpath("//a[@class='btn_secondary' and contains(text(), 'BACK HOME')]");
 
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public CheckoutCompletePage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(COMPLETE_HEADER));
+        return this;
     }
 
     // Получение текста заголовка (например, "THANK YOU FOR YOUR ORDER")
