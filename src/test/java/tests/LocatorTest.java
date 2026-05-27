@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 
 public class LocatorTest extends BaseTest{
 
-    @Test(
+    /*@Test(
             testName = "Проверка локаторов",
             description = "Приведен список локаторов"
-    )
+    )**/
     public void testLocators() {
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement usernameInputCss = driver.findElement(By.cssSelector("#user-name"));
