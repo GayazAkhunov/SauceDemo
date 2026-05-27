@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: SauceDemo
+name: SauceDemo build
 
 on:
   push:
