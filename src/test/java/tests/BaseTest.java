@@ -1,9 +1,11 @@
 package tests;
 
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 import utils.TestListener;
@@ -11,7 +13,7 @@ import utils.TestListener;
 import java.util.HashMap;
 
 
-@Listeners(TestListener.class)
+@Listeners({AllureTestNg.class, TestListener.class})
 
 public class BaseTest {
     protected WebDriver driver;
@@ -25,7 +27,7 @@ public class BaseTest {
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional("chrome")
-            String browser) {
+            String browser, ITestContext iTestContext) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             HashMap<String, Object> chromePrefs = new HashMap<>();
@@ -48,6 +50,8 @@ public class BaseTest {
         checkoutStepOnePage = new CheckoutStepOnePage(driver);
         checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
+
+        iTestContext.setAttribute("driver",driver);
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown() {

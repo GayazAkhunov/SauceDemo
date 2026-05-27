@@ -1,8 +1,13 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
+@Log4j2
 public class CheckoutStepTwoPage extends BasePage {
     private final By TITLE = By.xpath("//*[@data-test='title']");
     private final By FINISH_BUTTON = By.xpath("//button[text()='FINISH']");
@@ -14,8 +19,16 @@ public class CheckoutStepTwoPage extends BasePage {
     private final By TOTAL = By.xpath("//div[@class='summary_total_label']");
     private final By ERROR_MESSAGE = By.xpath("//*[@data-test='error']");
 
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
     public CheckoutStepTwoPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public CheckoutStepTwoPage isPageOpened(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
     }
 
     // Нажатие кнопки "FINISH"
