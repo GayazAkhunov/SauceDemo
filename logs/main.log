@@ -33,3 +33,8 @@ Fill checkout form with fields: '','', ''
 ======================================== FAILED TEST testLocators Duration: 0 ========================================%n
 ======================================== STARTING TEST testLocators ========================================%n
 ======================================== FAILED TEST testLocators Duration: 0 ========================================%n
+======================================== STARTING TEST addToCart ========================================%n
+LoginPage opening
+Log in with credential: 'standard_user','secret_sauce'
+Click to cart
+======================================== FINISHED TEST addToCart Duration: 1 ========================================%n

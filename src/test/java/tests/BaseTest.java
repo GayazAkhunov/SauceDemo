@@ -9,6 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import utils.PropertyReader;
 import utils.TestListener;
 
 import java.util.HashMap;
@@ -25,8 +26,8 @@ public class BaseTest {
     protected CheckoutStepTwoPage checkoutStepTwoPage;
     protected CheckoutCompletePage checkoutCompletePage;
 
-    protected String user = System.getProperty("user");
-    protected String password = System.getProperty("password");
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
