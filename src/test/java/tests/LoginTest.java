@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest {
     public void checkLoginWithPositive() {
         loginPage.open();
         AllureUtils.takeScreenshot(driver);
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         assertEquals(productsPage.getTitle(), "Products");
     }
 

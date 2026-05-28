@@ -27,3 +27,9 @@ Log in with credential: 'standard_user','secret_sauce'
 Click to cart
 ClickToCheckout
 Fill checkout form with fields: '','', ''
+======================================== STARTING TEST testLocators ========================================%n
+======================================== FAILED TEST testLocators Duration: 0 ========================================%n
+======================================== STARTING TEST testLocators ========================================%n
+======================================== FAILED TEST testLocators Duration: 0 ========================================%n
+======================================== STARTING TEST testLocators ========================================%n
+======================================== FAILED TEST testLocators Duration: 0 ========================================%n

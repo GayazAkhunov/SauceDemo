@@ -22,7 +22,7 @@ public class CartTest extends BaseTest {
     public void addToCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()
-                .login("standard_user", "secret_sauce")
+                .login(user, password)
                         .addToCart("Sauce Labs Backpack")
                                 .clickToCart();
         softAssert.assertEquals(cartPage.cartItemTitle(), "Sauce Labs Backpack");

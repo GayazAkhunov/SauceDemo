@@ -17,7 +17,7 @@ public class CheckoutStep1Test extends BaseTest {
     public void checkoutWithPositive() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()
-                        .login("standard_user", "secret_sauce")
+                        .login(user,password)
                                 .clickToCart()
                                         .clickCheckout()
                                                 .fillForm("Gayaz", "Akhunov", "412304");
